@@ -12,6 +12,8 @@ fi
 echo "Acquire::ForceIPv4 \"true\";" >> /etc/apt/apt.conf.d/99force-ipv4
 apt update
 apt install -y curl fastfetch fail2ban
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+systemctl enable fail2ban --now
 
 # Ask for the primary username(to control their .bashrc)
 username=$(whiptail \
@@ -36,8 +38,8 @@ echo -e "\n#--CUSTOM--\n" >> /home/$username/.bashrc
 echo -e "\n#--CUSTOM--\n" >> /root/.bashrc
 echo -e "\n# Add Colors\nPS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '\n" >> /home/$username/.bashrc
 echo -e "\n# Add Colors\nPS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '\n" >> /root/.bashrc
-echo -e "\n# # Show system info on every terminal\nfastfetch\n" >> /home/$username/.bashrc
-echo -e "\n# # Show system info on every terminal\nfastfetch\n" >> /root/.bashrc
+echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /home/$username/.bashrc
+echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /root/.bashrc
 
 # Ask if user wants to install sudo
 if whiptail --backtitle "Debian Setup Wizard" \
