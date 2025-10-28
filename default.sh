@@ -41,7 +41,7 @@ echo -e "\n# Add Colors\nPS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[
 echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /home/$username/.bashrc
 echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /root/.bashrc
 
- # Add the user to the sudo group
+# Add the user to the sudo group
 usermod -aG sudo $username
 
 # Set the timeout for sudo to be 4 hours
