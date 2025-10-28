@@ -11,7 +11,7 @@ fi
 # Disable ipv6, force ipv4
 echo "Acquire::ForceIPv4 \"true\";" >> /etc/apt/apt.conf.d/99force-ipv4
 apt update
-apt install -y curl fastfetch fail2ban
+apt install -y curl fastfetch fail2ban sudo
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 systemctl enable fail2ban --now
 
@@ -41,21 +41,11 @@ echo -e "\n# Add Colors\nPS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[
 echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /home/$username/.bashrc
 echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /root/.bashrc
 
-# Ask if user wants to install sudo
-if whiptail --backtitle "Debian Setup Wizard" \
-            --title "Install sudo?" \
-            --yesno "Do you want to install sudo?" 8 40; then
-    echo "Installing sudo..."
-    apt install -y sudo
-    echo "sudo installed successfully."
-    # Add the user to the sudo group
-    usermod -aG sudo $username
-    # Set the timeout
+ # Add the user to the sudo group
+usermod -aG sudo $username
 
-    echo "Defaults:$username timestamp_timeout=240" | sudo EDITOR='tee -a' visudo
-else
-    echo "Skipping sudo installation."
-fi
+# Set the timeout for sudo to be 4 hours
+echo "Defaults:$username timestamp_timeout=240" | sudo EDITOR='tee -a' visudo
 
 # Refresh .bashrc for root
 source ~/.bashrc
