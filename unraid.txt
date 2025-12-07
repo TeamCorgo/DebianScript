@@ -1,0 +1,16 @@
+# Enable disk cache for each drive in the system
+for drive in /dev/sd?; do sudo hdparm -W 1 "$drive"; done
+
+# You can add the command to boot at location
+nano /boot/config/go
+
+# Get the read & write speed of very disk 
+for drive in /dev/sd?; do sudo hdparm -Tt "$drive"; done
+
+# Read the serial number all of the drives
+for drive in /dev/sd?; do
+    serial=$(sudo hdparm -I "$drive" 2>/dev/null | awk -F: '/Serial Number/ {gsub(/ /,"",$2); print $2}')
+    echo "$drive : $serial"
+done
+
+
