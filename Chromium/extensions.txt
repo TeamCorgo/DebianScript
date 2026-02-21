@@ -1,0 +1,4 @@
+Bitwarden
+Ublock origin lite
+dom3d
+siteimprove
