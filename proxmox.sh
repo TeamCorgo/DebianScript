@@ -19,7 +19,7 @@ systemctl enable fail2ban --now
 sed -i '/#--CUSTOM--/,$d' /root/.bashrc && sed -i "/^PS1='\\\\\\[/,\$d" /root/.bashrc 
 echo -e "\n#--CUSTOM--\n" >> /root/.bashrc
 echo -e "\n# Add Colors\nPS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '\n" >> /root/.bashrc
-echo -e "\n# Show system info on every terminal\nfastfetch\n" >> /root/.bashrc
+echo -e "\n# Show system info on every terminal\nfastfetch --logo proxmox\n" >> /root/.bashrc
 
 # Refresh .bashrc for root
 source ~/.bashrc
