@@ -11,7 +11,7 @@ fi
 # Disable ipv6, force ipv4
 echo "Acquire::ForceIPv4 \"true\";" >> /etc/apt/apt.conf.d/99force-ipv4
 apt update
-apt install -y curl fastfetch fail2ban sudo
+apt install -y curl fastfetch fail2ban sudo dialog whiptail
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 systemctl enable fail2ban --now
 
