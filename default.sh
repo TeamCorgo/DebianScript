@@ -50,4 +50,8 @@ echo "Defaults:$username timestamp_timeout=240" | sudo EDITOR='tee -a' visudo
 # Refresh .bashrc for root
 source ~/.bashrc
 
+# Add 'contrib' & 'non-free' to update repositories
+sed -i 's/trixie main non-free-firmware/trixie main contrib non-free non-free-firmware/g' /etc/apt/sources.list
+sed -i 's/trixie-security main non-free-firmware/trixie-security main contrib non-free non-free-firmware/g' /etc/apt/sources.list
+sed -i 's/trixie-updates main non-free-firmware/trixie-updates main contrib non-free non-free-firmware/g' /etc/apt/sources.list
 
